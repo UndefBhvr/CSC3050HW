@@ -5,7 +5,7 @@
 #include <cstddef>
 #include <exception>
 #include <instr_parse/ISA_common.hpp>
-#include <tokenize/lexer.hpp>
+#include <lex/lexer.hpp>
 #include <istream>
 #include <map>
 #include <string>

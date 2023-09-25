@@ -1,7 +1,7 @@
 #include <las/phase2.h>
 #include <instr_parse/MIPS.hpp>
 #include <las/labelTable.h>
-#include <tokenize/lexer.hpp>
+#include <lex/lexer.hpp>
 
 
 #include <exception>

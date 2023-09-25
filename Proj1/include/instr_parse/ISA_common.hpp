@@ -1,7 +1,7 @@
 #ifndef UNDEFBHVR_ISA_COMMON_HPP
 #define UNDEFBHVR_ISA_COMMON_HPP
 
-#include <tokenize/lexer.hpp>
+#include <lex/lexer.hpp>
 #include <exception>
 #include <istream>
 

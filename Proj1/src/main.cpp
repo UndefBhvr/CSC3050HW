@@ -2,7 +2,7 @@
 #include <las/labelTable.h>
 #include <las/phase1.h>
 #include <las/phase2.h>
-#include <tokenize/lexer.hpp>
+#include <lex/lexer.hpp>
 
 #include <exception>
 #include <fstream>
