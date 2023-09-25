@@ -36,3 +36,5 @@ Proj1/build
 
 # Cache
 Proj1/.cache
+Proj1/CMakeCache.txt
+Proj1/CMakeFiles
