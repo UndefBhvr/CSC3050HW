@@ -32,9 +32,9 @@
 *.app
 
 # Build
-Proj1/build
+*/build
 
 # Cache
-Proj1/.cache
-Proj1/CMakeCache.txt
-Proj1/CMakeFiles
+*/.cache
+*/CMakeCache.txt
+*/CMakeFiles
