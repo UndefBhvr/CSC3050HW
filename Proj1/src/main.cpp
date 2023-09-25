@@ -5,6 +5,7 @@
 #include <lex/lexer.hpp>
 
 #include <exception>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <map>
@@ -14,6 +15,7 @@
 
 // using std::cout;
 using std::cerr;
+using std::filesystem::exists;
 
 int main(int argc, char **argv)
 {
@@ -21,6 +23,11 @@ int main(int argc, char **argv)
     {
         cerr<<"Invalid arguments! Expect two arguments.\n"
         <<"Usage: las [path_to_input] [path_to_output]\n";
+        return -1;
+    }
+    if(!exists(argv[1]))
+    {
+        cerr<<"Input file not found!\n";
         return -1;
     }
     std::ifstream fasm(argv[1]);
