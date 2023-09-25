@@ -13,10 +13,16 @@
 #include <vector>
 
 // using std::cout;
-// using std::cerr;
+using std::cerr;
 
 int main(int argc, char **argv)
 {
+    if(argc!=3)
+    {
+        cerr<<"Invalid arguments! Expect two arguments.\n"
+        <<"Usage: las [path_to_input] [path_to_output]\n";
+        return -1;
+    }
     std::ifstream fasm(argv[1]);
     lexer::token_stream stream(fasm);
     auto it = stream.iter();
