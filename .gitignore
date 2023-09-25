@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Build
+Proj1/build
+
+# Cache
+Proj1/.cache

@@ -1,0 +1,3 @@
+"D:\Program Files\mingw64\bin\cmake.exe" -E rm -f CMakeFiles\las.dir/objects.a
+D:\PROGRA~1\mingw64\bin\ar.exe qc CMakeFiles\las.dir/objects.a @CMakeFiles\las.dir\objects1.rsp
+D:\PROGRA~1\mingw64\bin\G__~1.EXE -Wl,--whole-archive CMakeFiles\las.dir/objects.a -Wl,--no-whole-archive -o las.exe -Wl,--out-implib,liblas.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\las.dir\linkLibs.rsp
