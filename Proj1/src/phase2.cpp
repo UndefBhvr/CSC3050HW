@@ -1,7 +1,8 @@
-#include <las/phase2.h>
 #include <instr_parse/MIPS.hpp>
 #include <las/labelTable.h>
+#include <las/phase2.h>
 #include <lex/lexer.hpp>
+
 
 
 #include <exception>
@@ -55,7 +56,7 @@ MIPS::instr parse_instr2(lexer::token_stream::iterator &it, std::ostream &os, un
     auto [_, instr] = *i;
     auto data = instr.parser->parse(it);
     auto code = codegen(instr, data, pc);
-    for (unsigned i = 1 << 31; i; i >>= 1) os << (int)!!(code & i);
-    os << '\n';
+    for (unsigned i = 1 << 31; i; i >>= 1) os.put('0' + (int)!!(code & i));
+    os.put('\n');
     return instr;
 }
