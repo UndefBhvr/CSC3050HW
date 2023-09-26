@@ -8,7 +8,7 @@
             "name": "(gdb) Launch For Proj1",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Proj1/bin/las.exe",
+            "program": "${workspaceFolder}/Proj1/bin/las",
             "args": [
                 "${workspaceFolder}/Proj1/test/sample/test.s",
                 "${workspaceFolder}/Proj1/test/sample/test.out"
