@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     }
     if(!exists(argv[1]))
     {
-        cerr<<"Input file not found!\n";
+        cerr<<"Input file \""<<argv[1]<<"\" not found!\n";
         return -1;
     }
     std::ifstream fasm(argv[1]);

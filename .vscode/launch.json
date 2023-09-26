@@ -10,8 +10,8 @@
             "request": "launch",
             "program": "${workspaceFolder}/Proj1/bin/las.exe",
             "args": [
-                "D:/Programming/code/CSC/CSC3050HW/Proj1/test/sample/test.s",
-                "D:/Programming/code/CSC/CSC3050HW/Proj1/test/sample/test.out"
+                "${workspaceFolder}/Proj1/test/sample/test.s",
+                "${workspaceFolder}/Proj1/test/sample/test.out"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
