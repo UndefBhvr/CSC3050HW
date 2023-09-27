@@ -108,10 +108,7 @@ private:
             current.type = token::SEC;
             current.content.push_back(c);
             c = is->get();
-            while (c!=':')
-            {
-                if(!isspace(c))current.content.push_back(c), c = is->get();
-            }
+            while (isalnum(c) || c == '_') current.content.push_back(c), c = is->get();
         }
         else if (isdigit(c) || c == '+' || c == '-')
         {
