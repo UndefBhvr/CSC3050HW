@@ -28,7 +28,7 @@ unsigned codegen(const MIPS::instr &instr, const MIPS::Data_field &data, unsigne
         if (data.lab.empty())
             res |= data.imm & 0xffff;
         else
-            res |= (label_table[data.lab] - pc - 1) & 0xff;
+            res |= (label_table[data.lab] - pc - 1) & 0xffff;
         res |= data.rs << 21 | data.rt << 16;
         break;
     case MIPS::J: res |= label_table[data.lab] & 0x3ffffff; break;
