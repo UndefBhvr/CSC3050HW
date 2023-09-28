@@ -23,7 +23,7 @@ struct token
         END
     } type;
     std::string content;
-    unsigned line=0;
+    unsigned line = 0;
 };
 
 struct token_stream
@@ -83,7 +83,7 @@ private:
     {
         while (isspace(c) && c != EOF)
         {
-            if(c=='\n')++current.line;
+            if (c == '\n') ++current.line;
             c = is->get();
         }
         if (c == '#')
@@ -108,7 +108,7 @@ private:
             current.type = token::SEC;
             current.content.push_back(c);
             c = is->get();
-            while (isalnum(c) || c == '_') current.content.push_back(c), c = is->get();
+            while (c != EOF && !isspace(c)) current.content.push_back(c), c = is->get();
         }
         else if (isdigit(c) || c == '+' || c == '-')
         {
@@ -135,23 +135,23 @@ private:
                 while (isdigit(c)) current.content.push_back(c), c = is->get();
             }
         }
-        else if (c=='"')
+        else if (c == '"')
         {
             current.type = token::STR;
             current.content.push_back(c);
-            c=is->get();
-            while(c!='"')
+            c = is->get();
+            while (c != '"')
             {
                 current.content.push_back(c);
-                if(c=='\\')
+                if (c == '\\')
                 {
-                    c=is->get();
+                    c = is->get();
                     current.content.push_back(c);
                 }
-                c=is->get();
+                c = is->get();
             }
             current.content.push_back(c);
-            c=is->get();
+            c = is->get();
         }
         else if (c == EOF)
         {
