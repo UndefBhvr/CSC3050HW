@@ -57,7 +57,11 @@ inline Data_field &operator|=(Data_field &lhs, const Data_field &rhs)
 
 inline unsigned short parse_reg(const std::string &name)
 {
-    if (name.size() < 2) return 0xffff;
+    if (name.size() < 2)
+    {
+        if(isdigit(name[0]))return name[0]-'0';
+        return 0xffff;
+    }
     switch (name[0])
     {
     case 'z':
@@ -90,7 +94,13 @@ inline unsigned short parse_reg(const std::string &name)
     case 'r':
         if (name == "ra") return 31;
         return 0xffff;
-    default: return 0xffff;
+    default:
+        if(name.size()==2&&isdigit(name[0])&&isdigit(name[1]))
+        {
+            unsigned short res=(name[0]-'0')*10+name[1]-'0';
+            if(res<32)return res;
+        }
+        return 0xffff;
     }
 }
 
