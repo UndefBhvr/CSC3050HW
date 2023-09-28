@@ -5,6 +5,7 @@
 ## Build & Use
 ```bash
 #build
+Proj> mkdir build
 Proj> cmake -B build -G"Unix Makefiles"
 Proj> cd build
 Proj/build> make
