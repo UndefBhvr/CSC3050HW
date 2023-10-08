@@ -4,6 +4,7 @@
 #include <cctype>
 #include <istream>
 #include <string>
+#include <iterator>
 
 
 namespace lexer
@@ -55,6 +56,11 @@ struct token_stream
             return *this;
         }
 
+        bool operator==(const std::default_sentinel_t&)
+        {
+            return (*this)->type==token::END;
+        }
+
     private:
         iterator(token_stream *str)
             : str(str)
@@ -73,6 +79,16 @@ struct token_stream
     iterator iter()
     {
         return iterator(this);
+    }
+
+    iterator begin()
+    {
+        return iter();
+    }
+
+    std::default_sentinel_t end()
+    {
+        return std::default_sentinel;
     }
 
 private:
