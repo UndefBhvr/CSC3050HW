@@ -139,3 +139,15 @@ unsigned codegen(
     //The address of the instruction, for relative-address jump like bne and so on.
     );
 ```
+
+The return value of the function is just the instruction word.
+
+## Some other details
+
+Undefined symbols will be regarded as address 0. These symbols may be defined in other object files, and this should be handled by the linker.
+
+Registers can be written as their name or number. Both $zero and $0 is acceptable.
+
+Immediate numbers can be decimal, octal or hexadecimal. Digitals started with "0x" will be regarded as hexadecimal number. Digitals started with "0" will be regarded as octal number. Otherwise the digitals will be regarded as decimal number.
+
+Only decimal numbers can be negative. For other numbers, the lower 16 bits will be the value of "immediate" field.
