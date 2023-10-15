@@ -34,8 +34,10 @@
 # Build
 */build
 */bin
+build
 
 # Cache
 */.cache
 */CMakeCache.txt
 */CMakeFiles
+*.cmake

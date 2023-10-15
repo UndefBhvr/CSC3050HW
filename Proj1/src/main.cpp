@@ -19,10 +19,10 @@ using std::filesystem::exists;
 
 int main(int argc, char **argv)
 {
-    if(argc!=3)
+    if(argc<3||argc>5)
     {
         cerr<<"Invalid arguments! Expect two arguments.\n"
-        <<"Usage: las [path_to_input] [path_to_output]\n";
+        <<"Usage: las [path_to_input] [path_to_output] [[expected]]\n";
         return -1;
     }
     if(!exists(argv[1]))

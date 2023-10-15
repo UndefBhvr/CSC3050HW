@@ -7,3 +7,4 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS "-fno-exceptions -fno-rtti")
 
 add_executable(las labelTable.cpp phase1.cpp phase2.cpp main.cpp)
+add_executable(tester labelTable.cpp phase1.cpp phase2.cpp main.cpp)
