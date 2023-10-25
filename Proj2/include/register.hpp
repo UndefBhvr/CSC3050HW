@@ -1,0 +1,50 @@
+#ifndef XDLZ_REGISTER_HPP
+#define XDLZ_REGISTER_HPP
+
+#include <prelude.hpp>
+
+namespace xldz
+{
+
+inline u32 reg[32], pc, hi, lo;
+
+#define GEN_REG_ALIAS(name, number) inline u32 &name = reg[number]
+
+GEN_REG_ALIAS(zero, 0);
+GEN_REG_ALIAS(at, 1);
+GEN_REG_ALIAS(v0, 2);
+GEN_REG_ALIAS(v1, 3);
+GEN_REG_ALIAS(a0, 4);
+GEN_REG_ALIAS(a1, 5);
+GEN_REG_ALIAS(a2, 6);
+GEN_REG_ALIAS(a3, 7);
+GEN_REG_ALIAS(t0, 8);
+GEN_REG_ALIAS(t1, 9);
+GEN_REG_ALIAS(t2, 10);
+GEN_REG_ALIAS(t3, 11);
+GEN_REG_ALIAS(t4, 12);
+GEN_REG_ALIAS(t5, 13);
+GEN_REG_ALIAS(t6, 14);
+GEN_REG_ALIAS(t7, 15);
+GEN_REG_ALIAS(s0, 16);
+GEN_REG_ALIAS(s1, 17);
+GEN_REG_ALIAS(s2, 18);
+GEN_REG_ALIAS(s3, 19);
+GEN_REG_ALIAS(s4, 20);
+GEN_REG_ALIAS(s5, 21);
+GEN_REG_ALIAS(s6, 22);
+GEN_REG_ALIAS(s7, 23);
+GEN_REG_ALIAS(t8, 24);
+GEN_REG_ALIAS(t9, 25);
+GEN_REG_ALIAS(k0, 26);
+GEN_REG_ALIAS(k1, 27);
+GEN_REG_ALIAS(gp, 28);
+GEN_REG_ALIAS(sp, 29);
+GEN_REG_ALIAS(fp, 30);
+GEN_REG_ALIAS(ra, 31);
+
+#undef GEN_REG_ALIAS
+
+} // namespace xldz
+
+#endif

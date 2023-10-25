@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/Programming/code/CSC/CSC3050HW/Proj2/build/src",
+  "command": "D:\\PROGRA~1\\mingw64\\bin\\G__~1.EXE  @CMakeFiles/xldz.dir/includes_CXX.rsp -fno-exceptions -fno-rtti -std=gnu++20 -o CMakeFiles\\xldz.dir\\main.cpp.obj -c D:\\Programming\\code\\CSC\\CSC3050HW\\Proj2\\src\\main.cpp",
+  "file": "D:/Programming/code/CSC/CSC3050HW/Proj2/src/main.cpp",
+  "output": "src/CMakeFiles/xldz.dir/main.cpp.obj"
+}
+]

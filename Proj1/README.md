@@ -146,7 +146,7 @@ The return value of the function is just the instruction word.
 
 Undefined symbols will be regarded as address 0. These symbols may be defined in other object files, and this should be handled by the linker.
 
-Registers can be written as their name or number. Both $zero and $0 is acceptable.
+Registers can be written as their name or number. For example, both $zero and $0 is acceptable.
 
 Immediate numbers can be decimal, octal or hexadecimal. Digitals started with "0x" will be regarded as hexadecimal number. Digitals started with "0" will be regarded as octal number. Otherwise the digitals will be regarded as decimal number.
 
