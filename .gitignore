@@ -41,3 +41,7 @@ build
 */CMakeCache.txt
 */CMakeFiles
 *.cmake
+
+#VSCode
+
+*/.vscode/*
