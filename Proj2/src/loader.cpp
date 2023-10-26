@@ -61,9 +61,11 @@ u64 align_4(u64 s)
 
 void load(std::istream &is)
 {
+    fp = sp = STACK_BEGIN;
     lexer::token_stream str(is);
     auto it = str.begin();
     while (it->type != lexer::token::SEC || it->content != ".data") ++it;
+    ++it;
     while (it->type != lexer::token::END &&
            (it->type != lexer::token::SEC || it->content != ".text"))
     {
@@ -86,7 +88,7 @@ void load(std::istream &is)
                 u64 s = align_4(escaped.size() - 2);
                 for (u64 i = 1; i < escaped.size() - 1; ++i)
                 {
-                    data_pos[i] = escaped[i];
+                    data_pos[i - 1] = escaped[i];
                 }
                 data_pos += s;
                 ++it;
@@ -102,7 +104,7 @@ void load(std::istream &is)
                 u64 s = align_4(escaped.size() - 1);
                 for (u64 i = 1; i < escaped.size() - 1; ++i)
                 {
-                    data_pos[i] = escaped[i];
+                    data_pos[i - 1] = escaped[i];
                 }
                 data_pos[escaped.size() - 1] = 0;
                 data_pos += s;
@@ -121,9 +123,8 @@ void load(std::istream &is)
                 u32 res = lexer::parse_int(it->content);
                 ++it;
                 res &= mask;
-                for (u32 i = 0; i < 4; ++i) data_pos[i] = res & (0xFF << i);
+                for (u32 i = 0; i < 4; ++i) data_pos[i] = (res & (0xFFU << (8 * i))) >> (8 * i);
                 data_pos += 4;
-                ++it;
                 continue;
             }
             std::terminate();

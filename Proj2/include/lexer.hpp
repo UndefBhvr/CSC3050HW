@@ -194,9 +194,9 @@ inline int parse_int(const std::string &num)
             if (isdigit(num[i]))
                 res += num[i] - '0';
             else if (isupper(num[i]))
-                res += num[i] - 'A';
+                res += num[i] - 'A' + 10;
             else if (islower(num[i]))
-                res += num[i] - 'a';
+                res += num[i] - 'a' + 10;
         }
         return res;
     }
