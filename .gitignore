@@ -44,4 +44,4 @@ build
 
 #VSCode
 
-*/.vscode/*
+#*/.vscode/*
