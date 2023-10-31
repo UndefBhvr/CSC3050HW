@@ -11,7 +11,7 @@ void execute()
     xldz::fp = xldz::STACK_BEGIN;
     xldz::sp = xldz::STACK_BEGIN;
     xldz::pc = xldz::TEXT_BEGIN;
-    xldz::gp = 0x00508000;
+    xldz::gp = xldz::DATA_BEGIN + 0x8000;
     u32 cnt=0;
     while (1)
     {
