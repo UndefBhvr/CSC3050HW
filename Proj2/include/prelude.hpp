@@ -2,6 +2,7 @@
 #define XLDZ_PRELUDE_HPP
 
 #include <cstdint>
+
 namespace xldz
 {
 
@@ -42,5 +43,14 @@ GEN_GETTER(TAR);
 #undef GEN_GETTER
 
 } // namespace xldz
+
+#define NDEBUG
+
+#ifndef NDEBUG
+    #define XLDZ_DEBUGF(fmt,...)\
+        fprintf(stderr,fmt __VA_OPT__(,) __VA_ARGS__)
+#else
+    #define XLDZ_DEBUGF(fmt,...)
+#endif
 
 #endif

@@ -32,7 +32,7 @@ namespace
 inline u32 _init = []()
 {
     reg_syscall_handle(1, []() { printf("%d", a0); });
-    reg_syscall_handle(4, []() { printf("%s", string_at(reg[a0])); });
+    reg_syscall_handle(4, []() { printf("%s", string_at(a0)); });
     reg_syscall_handle(5, []() { scanf("%d", &v0); });
     reg_syscall_handle(8,
                        []()

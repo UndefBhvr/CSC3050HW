@@ -1,9 +1,11 @@
 #include <lexer.hpp>
+#include <loader.h>
 #include <memory.hpp>
 #include <register.hpp>
 
 #include <array>
 #include <cctype>
+#include <concepts>
 #include <iostream>
 
 namespace xldz
@@ -59,9 +61,8 @@ u64 align_4(u64 s)
     return (s / 4 + !!(s % 4)) * 4;
 }
 
-void load(std::istream &is)
+void load_data(std::istream &is)
 {
-    fp = sp = STACK_BEGIN;
     lexer::token_stream str(is);
     auto it = str.begin();
     while (it->type != lexer::token::SEC || it->content != ".data") ++it;
@@ -69,8 +70,9 @@ void load(std::istream &is)
     while (it->type != lexer::token::END &&
            (it->type != lexer::token::SEC || it->content != ".text"))
     {
-        if (it->type == lexer::token::SYM)
+        if (it->type == lexer::token::SYM || it->type == lexer::token::ID)
         {
+            if (it->type == lexer::token::ID) XLDZ_DEBUGF("Loading data %s\n", it->content.c_str());
             ++it;
             continue;
         }
@@ -115,20 +117,37 @@ void load(std::istream &is)
             {
                 char c = data_type[1];
                 u32 mask = c == 'b' ? 0xFFU : (c == 'h' ? 0xFFFFU : 0xFFFFFFFFU);
+                u32 len = c == 'b' ? 1 : (c == 'h' ? 2 : 4);
                 if (it->type != lexer::token::NUM)
                 {
                     data_pos += 4;
                     continue;
                 }
-                u32 res = lexer::parse_int(it->content);
-                ++it;
-                res &= mask;
-                for (u32 i = 0; i < 4; ++i) data_pos[i] = (res & (0xFFU << (8 * i))) >> (8 * i);
-                data_pos += 4;
+                u32 cnt = 0;
+                do {
+                    u32 res = lexer::parse_int(it->content);
+                    ++it;
+                    res &= mask;
+                    for (u32 i = 0; i < 4; ++i)
+                        data_pos[i + cnt] = (res & (0xFFU << (8 * i))) >> (8 * i);
+                    cnt += len;
+                } while (it->content == "," && (++it, 1));
+                data_pos += align_4(cnt);
                 continue;
             }
             std::terminate();
         }
+    }
+}
+
+void load_instr(binary_u32_stream &instr_stream)
+{
+    u32 addr = TEXT_BEGIN;
+    for (u32 instr : instr_stream)
+    {
+        sw_to(addr, instr);
+        XLDZ_DEBUGF("%08x at addr %08x\n", w_at(addr), addr);
+        addr += 4;
     }
 }
 

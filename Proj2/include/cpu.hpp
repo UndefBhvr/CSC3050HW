@@ -141,15 +141,15 @@ inline const exec_handle sp1[64] = {
     [](u32 i) // jr 0x08
     {
         u32 _pc = pc + 4;
-        pc = reg[RS(i)];
-        execute_delayslot(_pc);
+        pc = reg[RS(i)] - 4;
+        //execute_delayslot(_pc);
     },
     [](u32 i) // jalr 0x09
     {
         u32 _pc = pc + 4;
-        reg[RD(i)] = pc + 8;
-        pc = reg[RS(i)];
-        execute_delayslot(_pc);
+        reg[RD(i)] = pc + 4;//8;
+        pc = reg[RS(i)] - 4;
+        //execute_delayslot(_pc);
     },
     [](u32 i) // movz 0x0A
     {
@@ -351,25 +351,25 @@ inline const exec_handle exec[64] = {
         i32 offset = static_cast<i16>(IMM(i));
         u32 _pc = pc + 4;
         if ((!reg[RT(i)]) == (reg[RS(i)] < 0))
-            pc += (offset << 2);
-        else
-            pc += 4;
-        execute_delayslot(_pc);
+            pc += (offset << 2)-4;
+        //else
+        //    pc += 4;
+        //execute_delayslot(_pc);
     },
     [](u32 i) // j 0x02
     {
         u32 tar = TAR(i);
         u32 _pc = pc + 4;
-        pc = (pc & 0x0FFFFFFF) | (tar << 2);
-        execute_delayslot(_pc);
+        pc = ((pc & 0x0FFFFFFF) | (tar << 2))-4;
+        //execute_delayslot(_pc);
     },
     [](u32 i) // jal 0x03
     {
         u32 tar = TAR(i);
         u32 _pc = pc + 4;
-        ra = pc + 8;
-        pc = (pc & 0x0FFFFFFF) | (tar << 2);
-        execute_delayslot(_pc);
+        ra = pc + 4;//8;
+        pc = ((pc & 0xF0000000U) | (tar << 2))-4;
+        //execute_delayslot(_pc);
     },
     [](u32 i) // beq 0x04
     {
@@ -377,9 +377,9 @@ inline const exec_handle exec[64] = {
         i32 offset = static_cast<i16>(IMM(i));
         if (reg[RS(i)] == reg[RT(i)])
             pc += (offset << 2);
-        else
-            pc += 4;
-        execute_delayslot(_pc);
+        // else
+        //     pc += 4;
+        // execute_delayslot(_pc);
     },
     [](u32 i) // bne 0x05
     {
@@ -387,9 +387,9 @@ inline const exec_handle exec[64] = {
         i32 offset = static_cast<i16>(IMM(i));
         if (reg[RS(i)] != reg[RT(i)])
             pc += (offset << 2);
-        else
-            pc += 4;
-        execute_delayslot(_pc);
+        // else
+        //     pc += 4;
+        // execute_delayslot(_pc);
     },
     [](u32 i) // blez 0x06
     {
@@ -397,9 +397,9 @@ inline const exec_handle exec[64] = {
         i32 offset = static_cast<i16>(IMM(i));
         if (static_cast<i32>(reg[RS(i)]) <= 0)
             pc += (offset << 2);
-        else
-            pc += 4;
-        execute_delayslot(_pc);
+        // else
+        //     pc += 4;
+        // execute_delayslot(_pc);
     },
     [](u32 i) // bgtz 0x07
     {
@@ -407,9 +407,9 @@ inline const exec_handle exec[64] = {
         i32 offset = static_cast<i16>(IMM(i));
         if (static_cast<i32>(reg[RS(i)]) > 0)
             pc += (offset << 2);
-        else
-            pc += 4;
-        execute_delayslot(_pc);
+        // else
+        //     pc += 4;
+        // execute_delayslot(_pc);
     },
     [](u32 i) // addi 0x08
     {
@@ -494,7 +494,7 @@ inline const exec_handle exec[64] = {
     [](u32 i) // swl 0x2A
     { shw_to(reg[RS(i)] + static_cast<i16>(IMM(i)) + 2, 0xABCD); },
     [](u32 i) // sw 0x2B
-    { shw_to(reg[RS(i)] + static_cast<i16>(IMM(i)), reg[RT(i)]); },
+    { sw_to(reg[RS(i)] + static_cast<i16>(IMM(i)), reg[RT(i)]); },
     trap,     // 0x2C,
     trap,     // 0x2D,
     [](u32 i) // swr 0x2E
@@ -507,6 +507,17 @@ inline void execute_delayslot(u32 addr)
     u32 i = w_at(addr);
     exec[OP(i)](i);
 }
+
+inline void execute(u32 instr)
+{
+    XLDZ_DEBUGF("Executing instruction %08x at .text+%d\n",instr,pc-TEXT_BEGIN);
+    for(int i=4;i<28;i+=4)
+    {
+        XLDZ_DEBUGF("%08x at STACK-%d\n",w_at(STACK_BEGIN-i),i);
+    }
+    exec[OP(instr)](instr);
+}
+
 } // namespace xldz
 
 #endif
