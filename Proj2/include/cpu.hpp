@@ -353,7 +353,7 @@ namespace xldz
             i32 offset = static_cast<i16>(IMM(i));
             u32 _pc = pc + 4;
             if ((!reg[RT(i)]) == (reg[RS(i)] < 0))
-                pc += (offset << 2) - 4;
+                pc += (offset << 2) ;
             //else
             //    pc += 4;
             //execute_delayslot(_pc);
@@ -362,7 +362,7 @@ namespace xldz
         {
             u32 tar = TAR(i);
             u32 _pc = pc + 4;
-            pc = ((pc & 0x0FFFFFFF) | (tar << 2)) - 4;
+            pc = ((pc & 0xF0000000U) | (tar << 2)) - 4;
             //execute_delayslot(_pc);
         },
         [](u32 i) // jal 0x03

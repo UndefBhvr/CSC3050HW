@@ -39,7 +39,8 @@
             "program": "${workspaceFolder}/build/xldz",
             "args": [
                 "${workspaceFolder}/build/test.asm",
-                "${workspaceFolder}/build/test.txt"
+                "${workspaceFolder}/build/test.txt",
+                "${workspaceFolder}/build/chk.txt"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

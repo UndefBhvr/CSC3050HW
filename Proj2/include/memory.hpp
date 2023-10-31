@@ -9,7 +9,7 @@ namespace xldz
 constexpr u32 MEM_SIZE = 0x600000;
 constexpr u32 TEXT_BEGIN = 0x400000;
 constexpr u32 DATA_BEGIN = 0x500000;
-constexpr u32 STACK_BEGIN = 0x508000;
+constexpr u32 STACK_BEGIN = 0xA00000;
 inline u8 real_mem[MEM_SIZE];
 
 inline u8 *mem = real_mem - TEXT_BEGIN;
@@ -17,8 +17,6 @@ inline u8 *mem = real_mem - TEXT_BEGIN;
 inline u8 *stack = mem + STACK_BEGIN;
 
 inline u8 *data_pos = mem + DATA_BEGIN;
-
-inline u8 *brk_pos = mem + STACK_BEGIN;
 
 inline u8 byte_at(u32 addr)
 {

@@ -50,7 +50,7 @@ namespace xldz
                                    }
                                    mem[a0 + a1 - 1] = c;
                                });
-            reg_syscall_handle(9, []() { v0 = (brk_pos += a0) - mem; });
+            reg_syscall_handle(9, []() { v0 = data_pos - mem; data_pos += a0;});
             reg_syscall_handle(10, []() { exit(0); });
             reg_syscall_handle(11, []() { putchar(a0); });
             reg_syscall_handle(12, []() { v0 = getchar(); });

@@ -3,7 +3,7 @@
 
 #include <executor.h>
 #include <loader.h>
-
+#include <snapshot.h>
 
 #include <memory.hpp>
 #include <prelude.hpp>
@@ -15,6 +15,7 @@ int main(int argc, char **argv)
 {
     std::ifstream asm_file(argv[1]);
     std::ifstream bin_file(argv[2]);
+    xldz::init_checkpoints(argv[3]);
     xldz::load_data(asm_file);
     xldz::binary_u32_stream instr_stream(bin_file);
     xldz::load_instr(instr_stream);
