@@ -37,7 +37,15 @@ inline u32 _init = []()
     reg_syscall_handle(8,
                        []()
                        {
-                           for (u32 i = 0; i < a1; ++i) mem[a0 + i] = getchar();
+                           char c=getchar();
+                           while(c=='\n')c=getchar();
+                           for (u32 i = 0; i < a1-1; ++i)
+                           {
+                               mem[a0 + i] = c;
+                               if(mem[a0+i]=='\n')return;
+                               c=getchar();
+                           }
+                           mem[a0+a1-1]=c;
                        });
     reg_syscall_handle(9, []() { v0 = (brk_pos += a0) - mem; });
     reg_syscall_handle(10, []() { exit(0); });
