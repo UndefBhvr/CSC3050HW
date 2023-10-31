@@ -161,7 +161,7 @@ inline const exec_handle sp1[64] = {
     },
     // TODO
     [](u32 i) // syscall 0x0C
-    { reg[RD(i)] = reg[RT(i)] << SA(i); },
+    { syscall(); },
     trap,     // _break_ 0x0D
     trap,     // 0x0E
     trap,     // _sync 0x0F
