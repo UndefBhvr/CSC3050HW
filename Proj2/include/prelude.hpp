@@ -44,7 +44,7 @@ GEN_GETTER(TAR);
 
 } // namespace xldz
 
-#define NDEBUG
+//#define NDEBUG
 
 #ifndef NDEBUG
     #define XLDZ_DEBUGF(fmt,...)\
