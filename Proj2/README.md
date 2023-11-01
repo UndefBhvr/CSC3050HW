@@ -73,3 +73,15 @@ Snapshot part is almost the same as the template on bb. The main modification is
 ### Future
 
 There will probably be FPU support, Tomasulo algorithm with ROB, etc. in the future.
+
+### About the name
+
+X <=> M
+
+L <=> I
+
+D <=> P
+
+Z <=> S
+
+Each pair is similar.
