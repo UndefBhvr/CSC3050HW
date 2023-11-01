@@ -6,7 +6,7 @@ A program is loaded into the memory at proper position and then executed.
 
 This simulator simulates the loader, the memory, and the cpu including register files.
 
-### High-leval implementation ideas
+### High-level implementation ideas
 
 The data are loaded from asm files, which can be parsed by the parser of project1.
 
