@@ -19,7 +19,7 @@ struct binary_u32_stream
     }
 
     u32 current;
-    bool eof=false;
+    bool eof = false;
 
     bool strip()
     {
@@ -37,7 +37,7 @@ struct binary_u32_stream
     {
         if (!strip())
         {
-            eof=true;
+            eof = true;
             return false;
         }
         current = 0;

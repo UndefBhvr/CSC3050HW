@@ -47,10 +47,9 @@ GEN_GETTER(TAR);
 #define NDEBUG
 
 #ifndef NDEBUG
-    #define XLDZ_DEBUGF(fmt,...)\
-        fprintf(stderr,fmt __VA_OPT__(,) __VA_ARGS__)
+#    define XLDZ_DEBUGF(fmt, ...) fprintf(stderr, fmt __VA_OPT__(, ) __VA_ARGS__)
 #else
-    #define XLDZ_DEBUGF(fmt,...)
+#    define XLDZ_DEBUGF(fmt, ...)
 #endif
 
 #endif

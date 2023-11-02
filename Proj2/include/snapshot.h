@@ -6,9 +6,9 @@
 namespace xldz
 {
 
-void init_checkpoints(char*);
+void init_checkpoints(char *);
 void snapshot(int);
 
-}
+} // namespace xldz
 
 #endif
